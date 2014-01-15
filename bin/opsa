@@ -2,7 +2,7 @@
 
 require 'opsa'
 
-lang = Language.new
+lang = OPSA::Language.new
 
 lang.respond_to Regexp.new('^say_hello (.+)') do |match|
   puts "> Hello, #{match}!"

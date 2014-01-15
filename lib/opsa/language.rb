@@ -1,9 +1,20 @@
 #!/usr/bin/env ruby
 
-class Language
+class OPSA::Language
   def initialize
     @actions = Hash.new nil
   end
+
+  # Define language
+  #
+  # Example:
+  #   lang.respond_to Regexp.new('^say_hello (.+)') do |match|
+  #      puts "> Hello, #{match}!"
+  #   end
+  #
+  # Arguments:
+  #   regex: Regexp
+  #   action: Block
 
   def respond_to(regex, &action)
     @actions[regex] ||= action
@@ -26,7 +37,7 @@ class Language
 end
 
 if __FILE__ == $0
-  lang = Language.new
+  lang = OPSA::Language.new
 
   lang.respond_to Regexp.new('^say_hello (.+)') do |match|
     puts "Hello, #{match}!"
