@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'opsa'
+
+lang = Language.new
+
+lang.respond_to Regexp.new('^say_hello (.+)') do |match|
+  puts "> Hello, #{match}!"
+end
+lang.respond_to Regexp.new('^echo (.+)') do |match|
+  puts "> #{match}"
+end
+
+robot = OPSA.new(:language => lang)
+
+while line = gets and line.strip!
+    robot.r(line)
+end
