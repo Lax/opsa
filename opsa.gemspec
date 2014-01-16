@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name        = 'opsa'
-  s.version     = '0.0.1'
+  s.version     = '0.0.3'
   s.executables << 'opsa'
-  s.date        = '2014-01-15'
+  s.date        = '2014-01-16'
   s.summary     = "OPSA"
   s.description = "A simple systems operation robot"
   s.authors     = ["Liu Lantao"]

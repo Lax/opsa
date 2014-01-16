@@ -28,7 +28,7 @@ class OPSA
   #   words: (String)
 
   def r(words)
-    @lang.input(words)
+    return @lang.input(words)
   end
 end
 

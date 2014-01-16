@@ -21,14 +21,11 @@ class OPSATest < Test::Unit::TestCase
   def test_echo_words
     lang = OPSA::Language.new
 
-    words = nil
     lang.respond_to Regexp.new('^echo:(.+)') do |match|
-      words = match
+      match
     end
     robot = OPSA.new(:language => lang)
 
-    robot.r("echo:hello")
-
-    assert_equal "hello", words
+    assert_equal "hello", robot.r("echo:hello")
   end
 end

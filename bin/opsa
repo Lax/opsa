@@ -5,14 +5,14 @@ require 'opsa'
 lang = OPSA::Language.new
 
 lang.respond_to Regexp.new('^say_hello (.+)') do |match|
-  puts "> Hello, #{match}!"
+  "> Hello, #{match}!"
 end
 lang.respond_to Regexp.new('^echo (.+)') do |match|
-  puts "> #{match}"
+  "> #{match}"
 end
 
 robot = OPSA.new(:language => lang)
 
 while line = gets and line.strip!
-    robot.r(line)
+    puts robot.r(line)
 end

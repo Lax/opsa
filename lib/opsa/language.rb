@@ -25,14 +25,15 @@ class OPSA::Language
       if _match = text.match(regex)
         args = _match.captures
         if args.size > 0
-          action.call(*args)
+          return action.call(*args)
         else
-          action.call(text)
+          return action.call(text)
         end
       else
         next
       end
     end
+    return nil
   end
 end
 
@@ -40,22 +41,25 @@ if __FILE__ == $0
   lang = OPSA::Language.new
 
   lang.respond_to Regexp.new('^say_hello (.+)') do |match|
-    puts "Hello, #{match}!"
+    "Hello, #{match}!"
   end
   lang.respond_to Regexp.new('^echo:(.+)') do |match|
-    puts match
+    "> #{match}"
   end
+  lang.respond_to Regexp.new('^(.+)') do |match|
+    "# #{match}"
+  end
+
+  puts lang.input("say_hello girl")
+  puts lang.input("say_hello world")
+  puts lang.input("say_hello beautifull sunshine")
+  puts lang.input("echo:hello")
+  puts lang.input("echo:world")
 
   counter = 0
   lang.respond_to Regexp.new('^incr$') do |text|
     counter += 1
   end
-
-  lang.input("say_hello world")
-  lang.input("say_hello beautifull sunshine")
-  lang.input("echo:hello")
-  lang.input("echo:world")
-
   lang.input("incr")
   puts counter
 end
